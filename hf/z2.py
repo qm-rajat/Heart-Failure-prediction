@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 
 # Load the trained model
-with open('a.pkl', 'rb') as model_file:
+with open('hf/a.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
 # Add background image using CSS
