@@ -6,6 +6,18 @@ import numpy as np
 with open('a.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
+# Add background image using CSS
+page_bg_img = '''
+<style>
+.stApp {
+  background-image: url("https://rare-gallery.com/uploads/posts/5002028-dark-gradient-artist-artwork-digital-art-hd-4k-blur-simple-background.jpg");
+  background-size: cover;
+  background-position: top;
+}
+</style>
+'''
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 # Title of the web app
 st.markdown("<h1 style='text-align: center;'>Heart Failure Detection</h1>", unsafe_allow_html=True)
 
@@ -25,8 +37,6 @@ with col1:
         st.session_state.page = 'home'
     if st.button("Prediction"):
         st.session_state.page = 'prediction'
-    if st.button("Dataset"):
-        st.session_state.page = 'dataset'
     if st.button("About"):
         st.session_state.page = 'about'
 
@@ -96,7 +106,7 @@ with col2:
         chest_pain_type = st.selectbox("Chest Pain Type", options=["", "Typical Angina", "Atypical Angina", "Non-Anginal Pain", "Asymptomatic"], index=0)
 
         resting_bp = st.number_input("Resting Blood Pressure (mm Hg)", min_value=50, max_value=200, value=None)
-        cholesterol = st.number_input("Cholesterol (mg/dl)", min_value=100, max_value=400, value=None)
+        cholesterol = st.number_input("Cholesterol (mg/dl)", min_value=125, max_value=400, value=None)
         fasting_bs = st.selectbox("Fasting Blood Sugar > 120 mg/dl", options=["", "Yes", "No"], index=0)
         resting_ecg = st.selectbox("Resting ECG", options=["", "Normal", "ST-T Wave Abnormality", "Left Ventricular Hypertrophy"], index=0)
         max_hr = st.number_input("Maximum Heart Rate Achieved", min_value=60, max_value=220, value=None)
@@ -140,24 +150,3 @@ with col2:
             st.error("No input data found! Please go to the Home page and provide the necessary inputs.")
         else:
             display_prediction(st.session_state.input_data)
-
-    elif st.session_state.page == 'about':
-        st.subheader("About This Project")
-        st.write("""
-            This Heart Failure Detection application leverages machine learning 
-            techniques to assist in predicting the risk of heart failure based on 
-            various health parameters. By inputting attributes such as age, sex, 
-            chest pain type, and others, users can receive insights into their 
-            heart health. The model has been trained on a comprehensive dataset 
-            to provide accurate predictions, thereby promoting awareness and timely 
-            medical consultations for heart-related issues.
-        """)
-
-    elif st.session_state.page == 'dataset':
-        st.subheader("About the Dataset")
-        st.write("""
-            The dataset used to train this model includes several key indicators of 
-            cardiovascular health. These include measurements such as age, cholesterol 
-            levels, resting blood pressure, and other health markers that are crucial 
-            for detecting potential heart issues.
-        """)
