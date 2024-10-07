@@ -1,7 +1,0 @@
-Flask==2.3.3
-numpy==1.24.2
-pandas==2.1.0
-scikit-learn==1.5.1
-gunicorn==20.1.0
-pickle==0.0.12
-setuptools>=65.0
