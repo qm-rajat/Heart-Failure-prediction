@@ -252,4 +252,50 @@ with col2:
         st.markdown("For further assistance, consult a medical professional.")
         
     elif st.session_state.page == 'about':
-        st.markdown('''it's a website where you can check your heart condition by giving required data ''')
+        st.markdown("<h2 style='text-align: center;'>About</h2>", unsafe_allow_html=True)
+
+        # Introduction to the App
+        st.subheader("Heart Failure Detection App")
+        st.markdown('''
+        This web application is designed to help users assess their risk of heart failure using a machine learning model. By providing key health indicators such as age, blood pressure, cholesterol level, and more, the app offers a prediction based on medical data. 
+        The goal of this app is to raise awareness and encourage individuals to take proactive steps in managing their heart health.
+        ''')
+
+        # Purpose and Motivation
+        st.subheader("Purpose")
+        st.markdown('''
+        Heart failure is a serious condition where the heart is unable to pump enough blood to meet the body's needs. Early detection and management of heart failure risk can significantly improve the quality of life and reduce health complications. 
+        This app aims to provide a quick and accessible tool for individuals to check their heart condition and make informed decisions about seeking medical advice.
+        ''')
+
+        # How the App Works
+        st.subheader("How It Works")
+        st.markdown('''
+        The app uses a trained machine learning model to predict heart failure risk. The model is based on a dataset of patients with various health conditions, and it learns patterns and correlations between the input features and heart failure outcomes. 
+        By inputting your personal health data, the app evaluates the likelihood of heart failure based on the same model, offering a prediction in just a few clicks.
+        ''')
+
+        # Technologies Used
+        st.subheader("Technologies Used")
+        st.markdown('''
+        This app is built using several technologies:
+        - **Frontend:** Streamlit for a user-friendly interface
+        - **Backend:** Python with machine learning libraries for prediction
+        - **Model:** A machine learning model trained on patient data to predict heart failure
+        - **Deployment:** Hosted as a web app for easy access from any device
+        ''')
+
+        # Disclaimer
+        st.subheader("Disclaimer")
+        st.markdown('''
+        Please note that this application is not a substitute for professional medical advice, diagnosis, or treatment. The prediction results provided by this app should not be considered definitive and should be followed up with a healthcare provider for a thorough examination. 
+        Always consult a medical professional if you have concerns about your heart health or any of the results shown by this app.
+        ''')
+
+        # Contact Information
+        st.subheader("Contact")
+        st.markdown('''
+        If you have any questions about this app or its predictions, feel free to contact us at: 
+        - **Email:** support@heartapp.com
+        - **Phone:** +123 456 7890
+        ''')
