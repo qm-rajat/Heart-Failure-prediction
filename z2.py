@@ -6,6 +6,9 @@ import numpy as np
 with open('a.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
+# Title of the web app
+st.markdown("<h1 style='margin-left:30%'>Heart Failure Detection</h1>", unsafe_allow_html=True)
+
 # Add background image using CSS
 page_bg_img = '''
 <style>
@@ -17,9 +20,6 @@ page_bg_img = '''
 </style>
 '''
 st.markdown(page_bg_img, unsafe_allow_html=True)
-
-# Title of the web app
-st.markdown("<h1 style='text-align: center;'>Heart Failure Detection</h1>", unsafe_allow_html=True)
 
 # Create two columns: one for the image and buttons, the other for dynamic content
 col1, col2 = st.columns([1, 3])  # 30% left, 70% right
@@ -36,9 +36,13 @@ with col1:
     if st.button("Home"):
         st.session_state.page = 'home'
     if st.button("Prediction"):
+        st.session_state.page = 'pd'
+    if st.button("Result"):
         st.session_state.page = 'prediction'
     if st.button("About"):
         st.session_state.page = 'about'
+    if st.button("Help"):
+        st.session_state.page = 'help'
 
 # Function to display user input and make predictions
 def display_prediction(input_data):
@@ -101,10 +105,8 @@ def display_prediction(input_data):
 
 # Right column for dynamic content based on the selected button
 with col2:
-    if st.session_state.page == 'home':
+    if st.session_state.page == 'pd':
         st.markdown('<h2>Welcome to the Heart Failure Detection app!</h2>', unsafe_allow_html=True)
-        st.write("Use the inputs to predict the risk of heart failure.")
-
         # Ask for the user's name
         user_name = st.text_input("Please enter your name")
         
@@ -153,8 +155,101 @@ with col2:
                 st.error("Please provide valid inputs for all fields within the specified ranges.")
 
     elif st.session_state.page == 'prediction':
-        st.markdown('<h2>Prediction Results</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 style="text-align: center;">Prediction Results</h2>', unsafe_allow_html=True)
         if 'input_data' not in st.session_state:
             st.error("No input data found! Please go to the Home page and provide the necessary inputs.")
         else:
             display_prediction(st.session_state.input_data)
+
+    elif st.session_state.page=='home':
+         st.header("The Heart Disease")
+
+         st.write("""A heart attack, or myocardial infarction, occurs when a section of the heart muscle is deprived of oxygen-rich blood, leading to potential damage. In India, coronary artery disease (CAD) is the primary culprit, often stemming from lifestyle factors such as poor diet, lack of exercise, and increasing stress levels. 
+
+          The significance of timely treatment cannot be overstated; every moment counts in restoring blood flow to minimize damage to the heart. Additionally, while CAD is the leading cause, there are instances where severe spasms of the coronary arteries can also halt blood flow, although this is less common.
+
+          In India, awareness around heart health is crucial, especially given the rise in risk factors like diabetes, hypertension, and obesity. Promoting a balanced diet, regular physical activity, and stress management can significantly help in preventing heart attacks. Community health initiatives and regular health check-ups can play an important role in early detection and intervention..""")
+
+         st.image("ty.jpg")
+         st.subheader("Symptoms")
+
+         st.write("""
+                      The major symptoms of a heart attack are
+
+          - Chest pain or discomfort. Most heart attacks involve discomfort in the center or left side of the chest that lasts for more than a few minutes or that goes away and comes back. The discomfort can feel like uncomfortable pressure, squeezing, fullness, or pain.
+          - Feeling weak, light-headed, or faint. You may also break out into a cold sweat.
+          - Pain or discomfort in the jaw, neck, or back.
+          - Pain or discomfort in one or both arms or shoulders.
+          - Shortness of breath. This often comes along with chest discomfort, but shortness of breath also can happen before chest discomfort.
+          """)
+
+         st.subheader("Risk factors")
+
+         st.write("""Several health conditions, your lifestyle, and your age and family history can increase your risk for heart disease and heart attack. These are called risk factors. About half of all Americans have at least one of the three key risk factors for heart disease: high blood pressure, high blood cholesterol, and smoking.
+
+          Some risk factors cannot be controlled, such as your age or family history. But you can take steps to lower your risk by changing the factors you can control.
+          """)
+
+         st.subheader("Recover after a heart attack")
+
+         st.write("""
+                  If you’ve had a heart attack, your heart may be damaged. This could affect your heart’s rhythm and its ability to pump blood to the rest of the body. You may also be at risk for another heart attack or conditions such as stroke, kidney disorders, and peripheral arterial disease (PAD).
+
+          You can lower your chances of having future health problems following a heart attack with these steps:
+
+          - Physical activity—Talk with your health care team about the things you do each day in your life and work. Your doctor may want you to limit work, travel, or sexual activity for some time after a heart attack.
+          - Lifestyle changes—Eating a healthier diet, increasing physical activity, quitting smoking, and managing stress—in addition to taking prescribed medicines—can help improve your heart health and quality of life. Ask your health care team about attending a program called cardiac rehabilitation to help you make these lifestyle changes.
+          - Cardiac rehabilitation—Cardiac rehabilitation is an important program for anyone recovering from a heart attack, heart failure, or other heart problem that required surgery or medical care. Cardiac rehab is a supervised program that includes
+          1. Physical activity
+          2. Education about healthy living, including healthy eating, taking medicine as prescribed, and ways to help you quit smoking
+          3. Counseling to find ways to relieve stress and improve mental health
+
+          A team of people may help you through cardiac rehab, including your health care team, exercise and nutrition specialists, physical therapists, and counselors or mental health professionals.
+
+
+          """)
+
+    elif st.session_state.page == 'help':
+        st.markdown("<h2 style='text-align: fill;'>Help</h2>", unsafe_allow_html=True)
+
+        # Chest Pain Type Information
+        st.subheader('''Chest Pain Type:''')
+        st.markdown('''
+        - **Typical Angina (TA):** This type of chest pain occurs when the heart doesn't get enough oxygen due to reduced blood flow. It's usually triggered by physical activity or stress and relieved by rest or medication.
+        - **Atypical Angina (ATA):** This pain is not typical of heart-related pain, and may appear as indigestion or discomfort. It’s less likely to be linked to heart disease.
+        - **Non-Anginal Pain (NAP):** This chest pain is usually not heart-related and might be due to other causes like muscle strains or gastroesophageal reflux.
+        - **Asymptomatic (ASY):** This condition is where no chest pain is experienced, but there may still be underlying heart issues. It is often called "silent" angina.''')
+
+        # Resting ECG Information
+        st.subheader('''Resting ECG (Electrocardiogram):''')
+        st.markdown('''
+        - **Normal:** The ECG shows no abnormal signs. The heart's electrical activity is functioning as expected.
+        - **ST-T Wave Abnormality (ST):** This indicates changes in the electrical activity of the heart that might suggest ischemia (reduced blood flow) or other cardiac conditions.
+        - **Left Ventricular Hypertrophy (LVH):** This shows that the heart's left ventricle is enlarged, often due to high blood pressure or other heart conditions.''')
+
+        # ST Slope Information
+        st.subheader('''ST Slope:''')
+        st.markdown('''
+        - **Upsloping:** The ST segment rises upward in an ECG tracing, and this pattern can be normal or indicative of early-stage ischemia.
+        - **Flat:** A flat ST segment could be a sign of heart disease or ischemia.
+        - **Downsloping:** A downsloping ST segment is often a concerning sign and could indicate more severe heart issues like ischemia or a blockage in the heart arteries.''')
+
+        # Additional Help
+        st.subheader('Additional Help:')
+        st.markdown('''
+        If you are unsure about any of the inputs, refer to the following:
+        
+        - **Age:** Enter your age in years.
+        - **Sex:** Choose your biological sex (Male/Female).
+        - **Resting Blood Pressure:** Enter your resting blood pressure in mm Hg.
+        - **Cholesterol Level:** Enter your cholesterol level in mg/dL.
+        - **Fasting Blood Sugar:** This is your blood sugar level after fasting (1 = fasting blood sugar > 120 mg/dL, 0 = otherwise).
+        - **Maximum Heart Rate (MaxHR):** This is the highest heart rate achieved during exercise.
+        - **Exercise-Induced Angina:** Choose if you experience chest pain during physical activity (Y/N).
+        - **Oldpeak:** This measures the ST depression induced by exercise relative to rest (enter the value in millimeters).''')
+
+        # End of Help Page
+        st.markdown("For further assistance, consult a medical professional.")
+        
+    elif st.session_state.page == 'about':
+        st.markdown('''it's a website where you can check your heart condition by giving required data ''')
