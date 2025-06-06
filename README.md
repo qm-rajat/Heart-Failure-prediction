@@ -106,7 +106,7 @@ This project is licensed under the terms of the license included in the reposito
 - GIET University for academic support
 - All contributors who have helped in the development of this project
 
-## 🔗 Connect with Me
+## 🔗 Connect with Me 
 
 - GitHub: [qm-rajat](https://github.com/qm-rajat)
 - Email: rajatdash2004@gmil.com
