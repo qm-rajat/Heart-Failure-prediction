@@ -2,6 +2,10 @@
 
 A machine learning-based web application that predicts the risk of heart failure using various health parameters. This project uses Streamlit for the frontend interface and a trained machine learning model for predictions.
 
+## 🌐 Live Demo
+
+The application is deployed and can be accessed at: [Heart Failure Prediction App](https://heart-failure-predicti0n.streamlit.app/)
+
 ## 🚀 Features
 
 - Interactive web interface for easy data input
@@ -30,12 +34,22 @@ pip install -r requirements.txt
 
 ## 🏃‍♂️ Running the Application
 
-To run the application, execute the following command in your terminal:
+### Local Development
+To run the application locally, execute the following command in your terminal:
 ```bash
 streamlit run z2.py
 ```
 
 The application will start and open in your default web browser at `http://localhost:8501`.
+
+### Deployment
+This application is deployed using Streamlit Cloud. The deployment process includes:
+1. Pushing the code to GitHub repository
+2. Connecting the repository to Streamlit Cloud
+3. Configuring the deployment settings
+4. Automatic deployment and updates
+
+You can access the deployed application at: [https://heart-failure-predicti0n.streamlit.app/](https://heart-failure-predicti0n.streamlit.app/)
 
 ## 📊 Project Structure
 
